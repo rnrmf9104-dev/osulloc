@@ -28,7 +28,7 @@
   <!-- 참고: KoPubWorld Batang 은 웹폰트 CDN이 없어 css 에서 Noto Serif KR 로 대체 지정됨 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 
   <link rel="stylesheet" href="css/style.css">
@@ -80,7 +80,7 @@
     <div class="hero__visual">
       <!-- ★ 수정: 제품 패키지 이미지 (실제 패키지의 비율·로고를 변형하지 마세요) -->
       <div class="hero__arch">
-        <img src="images/메인패키지.jpg" data-fallback="images/product-package.svg"
+        <img src="images/메인패키지.jpg" 
              alt="오설록 삼다 꿀배 티 제품 패키지" width="600" height="760">
       </div>
       <!-- 원재료 장식 이미지 (원형) : 순차 등장 후 제자리에서 부유 (제품 이미지는 중앙 고정) / 주기·진폭은 css .deco--* 와 --float-y -->
@@ -98,12 +98,12 @@
 <section class="story" id="story">
   <div class="fullvisual" data-parallax="0.15">
     <video class="fullvisual__video" autoplay muted loop playsinline preload="metadata"
-           poster="" src="images/배꽃바다.webm">
+           poster="images/jeju-sea.svg" src="images/배꽃바다.webm">
       <!-- ★ 수정: 영상 파일 경로 -->
     
     </video>
     <!-- 영상이 없거나 재생이 어려운 환경에서 보이는 대표 이미지 (영상 뒤에 깔림) -->
-   
+    <img class="fullvisual__img" src="images/jeju-sea.svg" data-fallback="images/jeju-sea.svg" alt="제주 바다와 자연 풍경">
     <div class="fullvisual__overlay"></div>
     <div class="fullvisual__text reveal">
       <p class="en">Jeju · Sweet Pause</p>
