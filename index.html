@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  오설록 삼다 꿀배 티 프로모션 (교육용 가상 프로젝트)
+  컨셉: Sweet Pause – Premium Brand Experience
+  ------------------------------------------------------------
+  [파일 구조]
+   index.html      : 구조(마크업)         ← 지금 이 파일
+   css/style.css   : 디자인(색상·폰트·반응형)
+   js/main.js      : 기능(인터랙션)
+   images/         : 이미지 (교체용 로컬 대체 이미지 포함)
+   videos/         : 영상 (brand-film.mp4, ad-15s.mp4 를 넣으면 재생 — 현재 폴더에는 파일 없음, 포스터 이미지로 대체 표시)
+  [수정 가이드 읽는 법]
+   "★ 수정:" 으로 시작하는 주석 = 자주 바꾸는 부분(문구/이미지/링크)
+  [이미지 교체 방법]
+   모든 이미지는 <img> 태그입니다. src 만 바꾸면 됩니다.
+   data-fallback = 원격 이미지가 불러와지지 않을 때 대신 보여줄 로컬 이미지입니다.
+  ============================================================
+-->
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오설록 삼다 꿀배 티 | Sweet Pause</title>
+  <meta name="description" content="바쁜 하루에, 달콤한 쉼표 하나. 제주 자연의 여유를 담은 오설록 삼다 꿀배 티 프로모션 (교육용 가상 프로젝트)">
+
+  <!-- 폰트: Noto Serif KR / Cormorant Garamond (Google Fonts), Pretendard (jsDelivr) -->
+  <!-- 참고: KoPubWorld Batang 은 웹폰트 CDN이 없어 css 에서 Noto Serif KR 로 대체 지정됨 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER (GNB) =====================
+  ★ 수정: 메뉴 문구는 <a> 안의 글자를, 이동 위치는 href="#섹션id" 를 바꾸세요.
+  메뉴를 추가하려면 <li> 한 줄을 복사하고, 이동할 섹션의 id 를 맞추면 자동으로 현재 위치 강조가 됩니다. -->
+<header class="gnb" id="gnb">
+  <div class="gnb__inner">
+    <a href="#hero" class="gnb__logo" aria-label="맨 위로">
+      <span class="en">OSULLOC</span><small>삼다 꿀배 티</small>
+    </a>
+    <nav class="gnb__nav" id="gnbNav" aria-label="주요 메뉴">
+      <ul>
+        <li><a href="#story">제품 이야기</a></li>
+        <li><a href="#ingredients">달콤한 풍미</a></li>
+        <li><a href="#recipe">티 레시피</a></li>
+        <li><a href="#moment">쉼표의 순간</a></li>
+        <li><a href="#gift">선물하기</a></li>
+      </ul>
+    </nav>
+    <a href="#gift" class="btn btn--amber gnb__cta">선물하기</a>
+    <!-- 모바일 햄버거 버튼 (JS: 메뉴 열기/닫기) -->
+    <button class="gnb__toggle" id="gnbToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="gnbNav"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== SECTION 1. HERO =====================
+  ★ 수정: 카피는 .hero__title / .hero__sub 안의 글자를 수정하세요.
+  인트로 애니메이션 타이밍은 css/style.css 의 "HERO INTRO" 구역에서 animation-delay 값으로 조절합니다.
+  장식 이미지(배·꿀·찻잎)는 .hero__deco 의 <img> src 를 교체하세요. -->
+<section class="hero" id="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <p class="hero__en en">Sweet Pause — Premium Brand Experience</p>
+      <h1 class="hero__title">
+        <span class="line"><span class="line__in">바쁜 하루에,</span></span>
+        <span class="line"><span class="line__in">달콤한 <em class="comma">쉼표<i></i></em> 하나.</span></span>
+      </h1>
+      <p class="hero__sub">제주 자연의 여유를 담아, 오늘의 나에게 따뜻한 한 잔.</p>
+      <a href="#story" class="btn btn--amber hero__cta">오늘의 쉼표 만나보기 <span class="arrow">→</span></a>
+    </div>
+
+    <div class="hero__visual">
+      <!-- ★ 수정: 제품 패키지 이미지 (실제 패키지의 비율·로고를 변형하지 마세요) -->
+      <div class="hero__arch">
+        <img src="images/메인패키지.jpg" data-fallback="images/product-package.svg"
+             alt="오설록 삼다 꿀배 티 제품 패키지" width="600" height="760">
+      </div>
+      <!-- 원재료 장식 이미지 (원형) : 순차 등장 후 제자리에서 부유 (제품 이미지는 중앙 고정) / 주기·진폭은 css .deco--* 와 --float-y -->
+      <div class="hero__deco deco--pear"><img src="images/배_원형.jpg" alt="배"></div>
+      <div class="hero__deco deco--honey"><img src="images/원형꿀.jpg" alt="꿀"></div>
+      <div class="hero__deco deco--tea"><img src="images/메인_찻잔.jpg" alt="차"></div>
+    </div>
+  </div>
+  <a href="#story" class="scroll-hint" aria-label="아래로 스크롤"><span>SCROLL</span><i></i></a>
+</section>
+
+<!-- ===================== SECTION 2. 제품 이야기 =====================
+  구성: (1) 풀스크린 비주얼/영상  (2) 이미지·텍스트 교차 레이아웃
+  ★ 수정: 영상은 videos/brand-film.mp4 를 넣으면 재생, 없으면 poster 이미지가 표시됩니다. -->
+<section class="story" id="story">
+  <div class="fullvisual" data-parallax="0.15">
+    <video class="fullvisual__video" autoplay muted loop playsinline preload="metadata"
+           poster="images/jeju-sea.svg" src="images/배꽃바다.webm">
+      <!-- ★ 수정: 영상 파일 경로 -->
+    
+    </video>
+    <!-- 영상이 없거나 재생이 어려운 환경에서 보이는 대표 이미지 (영상 뒤에 깔림) -->
+    <img class="fullvisual__img" src="images/jeju-sea.svg" data-fallback="images/jeju-sea.svg" alt="제주 바다와 자연 풍경">
+    <div class="fullvisual__overlay"></div>
+    <div class="fullvisual__text reveal">
+      <p class="en">Jeju · Sweet Pause</p>
+      <h2>제주의 바람과 햇살이<br>한 잔에 머뭅니다</h2>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- 교차 레이아웃 #1 : 이미지 왼쪽 / 텍스트 오른쪽 -->
+    <div class="split">
+      <div class="split__img reveal">
+        <img src="images/패키지2.jpg" data-fallback="images/product-package.svg" alt="삼다 꿀배 티 패키지" loading="lazy">
+      </div>
+      <div class="split__text">
+        <p class="en reveal" data-delay="0.2">Product Story</p>
+        <h2 class="reveal" data-delay="0.3">달콤함을 담은<br>삼다 꿀배 티</h2>
+        <!-- 문장을 짧은 단위로 나눠 순차 등장 (data-delay 로 간격 조절 0.2~0.4s) -->
+        <p class="reveal" data-delay="0.45">한 모금 마시면 은은하게 퍼지는 배의 청량함과 꿀의 부드러운 단맛.</p>
+        <p class="reveal" data-delay="0.7">따뜻하게도, 시원하게도 즐길 수 있는 달콤한 티 한 잔입니다.</p>
+        <p class="reveal" data-delay="0.95">바쁜 하루의 사이, 나를 위한 작은 쉼표가 되어 드립니다.</p>
+      </div>
+    </div>
+
+    <!-- 교차 레이아웃 #2 : 텍스트 왼쪽 / 이미지 오른쪽 (.split--reverse)
+         ★ 수정: 이미지는 <img src>, 문구는 아래 <p> 를 교체하세요. -->
+    <div class="split split--reverse">
+      <div class="split__img reveal">
+        <img src="images/제주배경찻잔.png" data-fallback="images/jeju-sea.svg" alt="제주 바다와 자연 풍경" loading="lazy">
+      </div>
+      <div class="split__text">
+        <p class="en reveal" data-delay="0.2">Jeju Nature</p>
+        <h2 class="reveal" data-delay="0.3">제주 자연의 여유를<br>한 잔에 담아</h2>
+        <p class="reveal" data-delay="0.45">제주 자연의 여유를 담아, 오늘의 나에게 따뜻한 한 잔.</p>
+        <p class="reveal" data-delay="0.7">배와 꿀, 그리고 차. 세 가지 원재료의 달콤한 어울림을 만나보세요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 3. 달콤한 풍미 =====================
+  ★ 수정: 원재료 카드 3개(배·꿀·차). 카드를 추가하려면 <article class="ing"> 블록을 복사하세요.
+  PC: 마우스를 올리면 확대+설명 표시 / 모바일: 카드를 탭하면 설명 표시(JS) -->
+<section class="ingredients" id="ingredients">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="en">Sweet Ingredients</p>
+      <h2>배, 꿀, 그리고 차의 황금빛</h2>
+      <p>세 가지 원재료가 만들어내는 달콤하고 깊은 풍미를 가까이 만나보세요.</p>
+    </header>
+
+    <div class="ing-grid">
+      <article class="ing reveal" tabindex="0">
+        <img src="images/배사진만.png" data-fallback="images/pear.svg" alt="촉촉한 배" loading="lazy">
+        <div class="ing__cap"><h3>배 <span class="en">Pear</span></h3>
+          <p class="ing__desc">시원하고 청량한 과즙, 입안 가득 퍼지는 은은한 단맛.</p></div>
+      </article>
+      <article class="ing reveal" data-delay="0.2" tabindex="0">
+        <img src="images/꿀2사진.png" data-fallback="images/honey.svg" alt="윤기 나는 꿀" loading="lazy">
+        <div class="ing__cap"><h3>꿀 <span class="en">Honey</span></h3>
+          <p class="ing__desc">윤기 흐르는 부드러운 단맛이 찻잔을 따뜻하게 감쌉니다.</p></div>
+      </article>
+      <article class="ing reveal" data-delay="0.4" tabindex="0">
+        <img src="images/차따르는 이미지1.png" data-fallback="images/tea.svg" alt="황금빛 차" loading="lazy">
+        <div class="ing__cap"><h3>차 <span class="en">Tea</span></h3>
+          <p class="ing__desc">맑은 황금빛 찻물이 풍미의 균형을 잡아 줍니다.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 4. 티 레시피 (영상 1개 + 레시피 카드 3개) =====================
+  구성: [좌] 15초 세로형(9:16) 영상 + 영상 정보  /  [우] ENJOY YOUR TEA 제목 + 카드 3개(HOT · ICE · SPARKLING)
+  ★ 수정: 영상 파일 = videos/ad-15s.mp4 , 썸네일 = poster (영상 비율은 JS가 자동 감지해 왜곡·잘림 없이 맞춤)
+  ★ 수정: 카드 문구는 .rcard 안의 글자, 카드 이미지는 <img src> 교체 (카드 3개는 같은 크기로 CSS에서 통일됨)
+  ★ 수정: 레시피 상세(재료/만드는 법)는 js/main.js 의 RECIPES 객체 (카드의 data-recipe = RECIPES 키: hot / ice / sparkling)
+  ★ 수정: 좌우 폭 비율은 css/style.css "8. 티 레시피" 의 --video-col 변수 -->
+<section class="recipe" id="recipe">
+  <div class="recipe__wrap">
+    <div class="recipe__grid">
+
+      <!-- 좌측: 15초 세로형 영상 쇼케이스 -->
+      <div class="showcase reveal reveal--scale">
+        <div class="showcase__stage">
+          <div class="shorts__frame" id="shorts">
+            <video id="adVideo" playsinline preload="metadata" poster="images/썸넬이미지_동영상.jpeg">
+              <source src="videos/ad-15s.webm" type="video/webm">
+            </video>
+            <button class="play" id="playBtn" aria-label="15초 영상 재생"><span></span></button>
+          </div>
+        </div>
+        <div class="showcase__info">
+          <p class="en">15s Short Film</p>
+          <h3>15초, 달콤한 쉼표</h3>
+          <p>짧은 영상으로 만나는 삼다 꿀배 티의 순간.</p>
+        </div>
+      </div>
+
+      <!-- 우측: 제목 + 레시피 카드 3개 (클릭 시 레시피 팝업 / 팝업은 페이지에 1개만 존재) -->
+      <div class="enjoy">
+        <header class="enjoy__head reveal">
+          <p class="en">ENJOY YOUR TEA</p>
+          <h2>오늘은 어떤 온도로 즐길까요?</h2>
+        </header>
+        <div class="enjoy__list">
+          <!-- 카드 1 : HOT TEA -->
+          <button class="rcard reveal" data-delay="0.15" data-recipe="hot">
+            <span class="rcard__img"><img src="images/tea_hot.jpg"
+                  data-fallback="images/drink-hot.svg" alt="따뜻한 삼다 꿀배 티" loading="lazy"></span>
+            <span class="rcard__body">
+              <span class="en">HOT TEA</span>
+              <strong>따뜻하게 즐기는 삼다 꿀배 티</strong>
+              <span class="rcard__desc">은은하게 퍼지는 배의 향과 부드러운 달콤함.</span>
+              <span class="rcard__link">레시피 보기 <i class="arrow">→</i></span>
+            </span>
+          </button>
+          <!-- 카드 2 : ICE TEA -->
+          <button class="rcard reveal" data-delay="0.3" data-recipe="ice">
+            <span class="rcard__img"><img src="images/tea_ice.jpg" data-fallback="images/drink-ice.svg" alt="시원한 삼다 꿀배 아이스 티" loading="lazy"></span>
+            <span class="rcard__body">
+              <span class="en">ICE TEA</span>
+              <strong>시원하게 즐기는 삼다 꿀배 티</strong>
+              <span class="rcard__desc">얼음과 함께 더욱 청량하게 즐기는 달콤한 한 잔.</span>
+              <span class="rcard__link">레시피 보기 <i class="arrow">→</i></span>
+            </span>
+          </button>
+          <!-- 카드 3 : SPARKLING ADE (기존 하단 별도 링크를 대체) -->
+          <button class="rcard reveal" data-delay="0.45" data-recipe="sparkling">
+            <span class="rcard__img"><img src="images/스파클링 에이드.png" data-fallback="images/drink-sparkling.svg" alt="꿀배 스파클링 에이드" loading="lazy"></span>
+            <span class="rcard__body">
+              <span class="en">SPARKLING ADE</span>
+              <strong>꿀배 스파클링 에이드</strong>
+              <span class="rcard__desc">톡 쏘는 청량함과 달콤한 배의 조화.</span>
+              <span class="rcard__link">레시피 보기 <i class="arrow">→</i></span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 5. 쉼표의 순간 =====================
+  구성: 풀스크린 라이프스타일 비주얼 + 상황별 슬라이더
+  ★ 수정: 슬라이드 추가 = <article class="slide"> 블록 복사 (점·버튼은 JS가 자동 생성) -->
+<section class="moment" id="moment">
+  <div class="fullvisual fullvisual--tall" data-parallax="0.2">
+    <video class="fullvisual__video" autoplay muted loop playsinline preload="metadata"
+           poster="images/life-window.svg" src="images/찻잔홈카페.webm"></video>
+    <div class="fullvisual__overlay"></div>
+    <div class="fullvisual__text reveal">
+      <p class="en">A Moment of Pause</p>
+      <h2>창가에 닿은 햇살,<br>그리고 따뜻한 한 잔</h2>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="slider" id="slider" aria-roledescription="carousel" aria-label="상황별 티타임">
+      <div class="slider__viewport">
+        <div class="slider__track">
+          <article class="slide">
+            <img src="images/퇴근후힐링.png" data-fallback="images/life-evening.svg" alt="퇴근 후 힐링" loading="lazy">
+            <div class="slide__cap"><p class="en">After Work</p><h3>퇴근 후 힐링</h3><p>수고한 하루 끝, 달콤한 한 잔으로 천천히 내려놓기.</p></div>
+          </article>
+          <article class="slide">
+            <img src="images/나를위한티타임.png" data-fallback="images/life-me.svg" alt="나를 위한 티타임" loading="lazy">
+            <div class="slide__cap"><p class="en">For Me</p><h3>나를 위한 티타임</h3><p>오늘의 나에게 건네는 작은 선물.</p></div>
+          </article>
+          <article class="slide">
+            <img src="images/선물.png" data-fallback="images/life-gift.svg" alt="소중한 사람에게 선물" loading="lazy">
+            <div class="slide__cap"><p class="en">For You</p><h3>소중한 사람에게 선물</h3><p>달콤한 마음을 포장해 전해 보세요.</p></div>
+          </article>
+        </div>
+      </div>
+      <button class="slider__btn slider__btn--prev" aria-label="이전">←</button>
+      <button class="slider__btn slider__btn--next" aria-label="다음">→</button>
+      <div class="slider__dots" role="tablist"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 6. 선물하기 =====================
+  ★ 수정: 구매/선물 버튼은 시연용입니다. 실제 링크는 js/main.js 상단 CONFIG.links 에 주소를 넣으면 적용됩니다.
+  FAQ 추가 = <div class="faq__item"> 블록 복사 -->
+<section class="gift" id="gift">
+  <div class="container gift__grid">
+    <div class="gift__visual reveal">
+      <div class="gift__glow" aria-hidden="true"></div>
+      <img src="images/제품사진 (2).png" data-fallback="images/product-package.svg" alt="삼다 꿀배 티 제품 패키지" loading="lazy">
+    </div>
+    <div class="gift__text">
+      <p class="en reveal">Shop &amp; Gift</p>
+      <h2 class="reveal" data-delay="0.2">달콤한 쉼표를<br>지금 만나보세요</h2>
+      <p class="reveal" data-delay="0.4">나를 위해, 혹은 소중한 사람을 위해. 삼다 꿀배 티로 따뜻한 마음을 전해 보세요.</p>
+      <div class="gift__btns reveal" data-delay="0.6">
+        <a class="btn btn--amber" data-link="buy" data-demo="구매" href="#">나를 위해 구매하기 <span class="arrow">→</span></a>
+        <a class="btn btn--line" data-link="gift" data-demo="선물하기" href="#">선물하기 <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container faq reveal">
+    <h3 class="en">FAQ</h3>
+    <div class="faq__item">
+      <button class="faq__q" aria-expanded="false">삼다 꿀배 티는 어떻게 우려 마시나요?<i></i></button>
+      <div class="faq__a"><p>티백 1개를 85~90℃의 물 200ml에 2~3분 우려 주세요. 취향에 따라 시간을 조절할 수 있습니다.</p></div>
+    </div>
+    <div class="faq__item">
+      <button class="faq__q" aria-expanded="false">아이스로도 마실 수 있나요?<i></i></button>
+      <div class="faq__a"><p>네. 진하게 우린 뒤 얼음을 가득 채운 잔에 부으면 시원하게 즐길 수 있습니다.</p></div>
+    </div>
+    <div class="faq__item">
+      <button class="faq__q" aria-expanded="false">선물용 포장이 가능한가요?<i></i></button>
+      <div class="faq__a"><p>공식몰의 선물하기 메뉴에서 선물 포장 옵션을 확인해 주세요. (교육용 가상 프로젝트의 예시 문구입니다)</p></div>
+    </div>
+    <div class="faq__item">
+      <button class="faq__q" aria-expanded="false">보관은 어떻게 하나요?<i></i></button>
+      <div class="faq__a"><p>직사광선과 습기를 피해 서늘하고 건조한 곳에 보관해 주세요.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER =====================
+  ★ 수정: SNS 링크는 시연용(data-demo)입니다. 실제 주소를 쓰려면 href 를 바꾸고 data-demo 속성을 지우세요. -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div>
+      <p class="footer__logo en">OSULLOC</p>
+      <p class="footer__note">본 페이지는 교육용 가상 프로젝트이며 실제 오설록의 공식 페이지가 아닙니다.<br>제품명·브랜드명은 학습 목적으로만 사용되었습니다.</p>
+    </div>
+    <ul class="footer__sns">
+      <li><a href="#" data-demo="SNS">Instagram</a></li>
+      <li><a href="#" data-demo="SNS">YouTube</a></li>
+      <li><a href="#" data-demo="SNS">Facebook</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- 플로팅 Quick CTA : 일정 스크롤 이후 표시 (JS) -->
+<a href="#gift" class="float-cta btn btn--amber" id="floatCta">선물하기</a>
+
+<!-- 레시피 팝업(모달) : 내용은 JS가 채움 -->
+<div class="modal" id="modal" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal__close" data-close aria-label="닫기">×</button>
+    <h3 id="modalTitle"></h3>
+    <h4>재료</h4><ul id="modalIng"></ul>
+    <h4>만드는 법</h4><ol id="modalSteps"></ol>
+  </div>
+</div>
+
+<!-- 알림 토스트 (영상 파일 없음 등 안내) -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
